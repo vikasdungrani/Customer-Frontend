@@ -1,4 +1,3 @@
-import ProductGallery from "@/components/product/ProductGallery";
 import ProductInfo from "@/components/product/ProductInfo";
 
 // import { products } from "@/data/products";
