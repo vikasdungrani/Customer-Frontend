@@ -13,6 +13,7 @@ export interface Product {
 
   description?: string | null;
 
+  photo_url?: string | null;
   photoLink1?: string | null;
   photoLink2?: string | null;
   photoLink3?: string | null;

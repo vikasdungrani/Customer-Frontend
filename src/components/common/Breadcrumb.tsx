@@ -1,3 +1,4 @@
+//src/app/components/common/Breadcrumb.tsx
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
@@ -7,7 +8,7 @@ export interface BreadcrumbItem {
 }
 
 interface BreadcrumbProps {
-  title: string;
+  title?: string;
   items: BreadcrumbItem[];
 }
 
@@ -17,20 +18,23 @@ export default function Breadcrumb({
 }: BreadcrumbProps) {
   return (
     <section className="border-b border-gray-200 bg-gray-50">
-      <div className="mx-auto max-w-7xl px-6 py-10">
-
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div
+        className={`mx-auto max-w-7xl px-6 ${title ? "py-6" : "py-1"
+          }`}
+      >
+        <div className="flex flex-col gap-2">
 
           {/* Page Title */}
 
-          <h1 className="text-3xl font-bold text-gray-900">
-            {title}
-          </h1>
+          {title && (
+            <h1 className="text-3xl font-bold text-gray-900">
+              {title}
+            </h1>
+          )}
 
           {/* Breadcrumb */}
 
           <nav className="flex flex-wrap items-center text-sm text-gray-500">
-
             {items.map((item, index) => (
               <div
                 key={index}
@@ -57,11 +61,9 @@ export default function Breadcrumb({
                 )}
               </div>
             ))}
-
           </nav>
 
         </div>
-
       </div>
     </section>
   );

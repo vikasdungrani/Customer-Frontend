@@ -32,7 +32,7 @@ export default function ShopSidebar() {
 
       {/* Categories */}
 
-      <div className="rounded-lg border border-gray-200 bg-white p-6">
+      <div className="rounded-lg border border-gray-200 bg-white p-4">
 
         <h3 className="mb-6 text-xl font-semibold">
           Browse Categories

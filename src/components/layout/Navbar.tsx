@@ -79,9 +79,9 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-[1400px] px-6">
 
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-13 items-center justify-between">
 
           {/* Logo */}
 
@@ -90,8 +90,9 @@ export default function Navbar() {
             <Image
               src="/images/logo.png"
               alt="Univershopper"
-              width={170}
-              height={45}
+              width={130}
+              height={30}
+              className="h-9 w-auto"
               priority
             />
 
@@ -99,7 +100,8 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
 
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-5">
+            
 
             {menus.map((menu) => (
               <div
@@ -108,7 +110,7 @@ export default function Navbar() {
               >
                 <Link
                   href={menu.href}
-                  className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-[#22668B]"
+                  className="flex items-center gap-1 text-[14px] font-medium text-gray-700 hover:text-[#22668B]"
                 >
                   {menu.title}
 
@@ -118,7 +120,7 @@ export default function Navbar() {
                 </Link>
 
                 {menu.children && (
-                  <div className="invisible absolute left-0 top-full mt-5 w-56 rounded-lg bg-white shadow-xl opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
+                  <div className="invisible absolute left-0 top-full mt-5 w-48 rounded-lg bg-white shadow-xl opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
 
                     {menu.children.map((child) => (
                       <Link
@@ -139,11 +141,11 @@ export default function Navbar() {
 
           {/* Right Icons */}
 
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-4">
 
             <button>
               <Search
-                size={20}
+                size={18}
                 className="hover:text-[#22668B]"
               />
             </button>
@@ -151,7 +153,7 @@ export default function Navbar() {
             <button className="relative">
 
               <Heart
-                size={20}
+                size={18}
                 className="hover:text-[#22668B]"
               />
 
@@ -164,7 +166,7 @@ export default function Navbar() {
             <button className="relative">
 
               <ShoppingCart
-                size={20}
+                size={18}
                 className="hover:text-[#22668B]"
               />
 
@@ -177,7 +179,7 @@ export default function Navbar() {
             <button>
 
               <User
-                size={20}
+                size={18}
                 className="hover:text-[#22668B]"
               />
 
