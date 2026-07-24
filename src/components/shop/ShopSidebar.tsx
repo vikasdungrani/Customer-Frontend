@@ -1,13 +1,52 @@
 "use client";
 
 const categories = [
-  "Frozen Fish",
-  "Dried Fish",
-  "Fresh Fish",
-  "Meat Alternatives",
-  "Fresh Meat",
-  "Sea Food",
-  "Organic Foods",
+  "All Products",
+  "Trending Products",
+  "Car Accessories",
+  "Safety Products",
+  "Home & Kitchen",
+  "Massage Products",
+  "Beauty Products",
+  "Clock",
+  "Humidifier",
+  "Packing Material",
+  "Baby Products",
+  "Fashion Products",
+  "Bags",
+  "Bathroom Accessories",
+  "Hardware Products",
+  "Mask",
+  "Garden & Outdoor",
+  "Umbrella",
+  "Exercise Products",
+  "Mobile Accessories",
+  "Kids Toys",
+  "Home Decor",
+  "Stainless Steel Products",
+  "Picnic",
+  "Electric Products",
+  "Office & Stationery",
+  "Winter Products",
+  "Craft Products",
+  "Cleaning Products",
+  "Bottle Products",
+  "Furniture",
+  "Summer Products",
+  "Computer Products",
+  "Bag Cover",
+  "Kids Stationery",
+  "Wipes Products",
+  "Pet Products",
+  "Soft Toys",
+  "Glass Products",
+  "Holi Products",
+  "Night Lamp",
+  "Wallpaper",
+  "Travel Products",
+  "Hair Brushes",
+  "Rain Season Products",
+  "Skin Care",
 ];
 
 const brands = [
@@ -56,7 +95,7 @@ export default function ShopSidebar() {
 
       {/* Brands */}
 
-      <div className="rounded-lg border border-gray-200 bg-white p-6">
+      {/* <div className="rounded-lg border border-gray-200 bg-white p-6">
 
         <h3 className="mb-6 text-xl font-semibold">
           Product Brand
@@ -86,7 +125,7 @@ export default function ShopSidebar() {
 
         </ul>
 
-      </div>
+      </div> */}
 
       {/* Colors */}
 

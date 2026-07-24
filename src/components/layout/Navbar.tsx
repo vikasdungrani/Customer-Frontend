@@ -90,9 +90,9 @@ export default function Navbar() {
             <Image
               src="/images/logo.png"
               alt="Univershopper"
-              width={130}
-              height={30}
-              className="h-9 w-auto"
+              width={800}
+              height={150}
+              className="h-13 w-auto"
               priority
             />
 
