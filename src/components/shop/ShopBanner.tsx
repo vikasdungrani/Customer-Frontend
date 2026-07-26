@@ -49,11 +49,6 @@ export default function ShopBanner({
               Shop
             </Link>
 
-            <span>/</span>
-
-            <span className="font-medium text-gray-900">
-              Women Fashion
-            </span>
 
           </nav>
 
