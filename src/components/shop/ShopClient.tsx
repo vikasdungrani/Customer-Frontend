@@ -46,8 +46,8 @@ export default function ShopClient() {
       // Debug: Products without image
       const noImageProducts = data.results.filter(
         (product) =>
-          !product.photoLink1 ||
-          product.photoLink1.trim() === ""
+          !product.photo_link_1 ||
+          product.photo_link_1.trim() === ""
       );
 
       if (noImageProducts.length > 0) {
@@ -57,9 +57,9 @@ export default function ShopClient() {
 
         console.table(
           noImageProducts.map((product) => ({
-            ID: product.subProductId,
-            Name: product.productName,
-            Photo: product.photoLink1,
+            ID: product.sub_product_id,
+            Name: product.product_name,
+            Photo: product.photo_link_1,
           }))
         );
 

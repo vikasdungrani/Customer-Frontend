@@ -26,11 +26,11 @@ export default async function ProductPage({ params }: Props) {
     <section className="py-16">
       <div className="mx-auto max-w-7xl px-6">
         <Breadcrumb
-          title={product.productName}
+          title={product.product_name}
           items={[
             { label: "Home", href: "/" },
             { label: "Shop", href: "/shop" },
-            { label: product.productName },
+            { label: product.product_name },
           ]}
         />
 
@@ -38,10 +38,10 @@ export default async function ProductPage({ params }: Props) {
           {/* <ProductGallery images={product.images} /> */}
           <ProductGallery
             images={[
-              product.photoLink1,
-              product.photoLink2,
-              product.photoLink3,
-              product.photoLink4,
+              product.photo_link_1,
+              product.photo_link_2,
+              product.photo_link_3,
+              product.photo_link_4,
             ]}
           />
           <ProductInfo product={product} />

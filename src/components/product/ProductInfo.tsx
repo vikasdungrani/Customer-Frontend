@@ -19,7 +19,7 @@ export default function ProductInfo({
       {/* Title */}
 
       <h1 className="mt-3 text-4xl font-bold leading-tight text-gray-900">
-        {product.productName}
+        {product.product_name}
       </h1>
 
       {/* Price */}
@@ -27,7 +27,7 @@ export default function ProductInfo({
       <div className="mt-6">
 
         <span className="text-4xl font-bold text-[#22668B]">
-          ₹{product.telegramPrice}
+          ₹{product.telegram_price}
         </span>
 
       </div>

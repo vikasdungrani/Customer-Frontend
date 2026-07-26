@@ -1,23 +1,35 @@
+//types/ProductCard.ts
+export type LiveStatus = "LIVE" | "NOT_LIVE";
+
+export type StockStatus = "IN_STOCK" | "OUT_OF_STOCK";
+
 export interface Product {
   id: number;
 
-  masterProductId: string;
-  subProductId: string;
+  master_product_id: string;
+  sub_product_id: string;
 
-  productName: string;
+  product_name: string;
 
-  markNumber?: string | null;
+  mark_number?: string | null;
 
-  mainCategories?: string | null;
-  subCategories?: string | null;
+  main_categories?: string | null;
+  sub_categories?: string | null;
 
   description?: string | null;
 
   photo_url?: string | null;
-  photoLink1?: string | null;
-  photoLink2?: string | null;
-  photoLink3?: string | null;
-  photoLink4?: string | null;
 
-  telegramPrice: string;
+  photo_link_1?: string | null;
+  photo_link_2?: string | null;
+  photo_link_3?: string | null;
+  photo_link_4?: string | null;
+
+  telegram_price: string;
+
+  // Customer Portal
+  live_status?: LiveStatus;
+
+  // Inventory
+  stock_status?: StockStatus;
 }
