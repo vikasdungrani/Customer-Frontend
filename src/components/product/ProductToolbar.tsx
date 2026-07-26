@@ -43,7 +43,7 @@ export default function ProductToolbar({
 
       <div className="flex flex-wrap items-center gap-3">
 
-        <div className="relative min-w-[260px] flex-1">
+        <div className="relative min-w-65 flex-1">
 
           <Search
             size={18}

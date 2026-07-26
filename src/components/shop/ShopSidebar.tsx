@@ -158,9 +158,9 @@ export default function ShopSidebar() {
                 >
                   {category.children.length > 0 ? (
                     expanded ? (
-                      <ChevronDown size={16} className="flex-shrink-0" />
+                      <ChevronDown size={16} className="shrink-0" />
                     ) : (
-                      <ChevronRight size={16} className="flex-shrink-0" />
+                      <ChevronRight size={16} className="shrink-0" />
                     )
                   ) : (
                     <span className="w-4" />

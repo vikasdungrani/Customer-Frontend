@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-r from-[#F8FAFC] to-[#EEF7FF]">
+    <section className="bg-linear-to-r from-[#F8FAFC] to-[#EEF7FF]">
       <div className="mx-auto flex max-w-7xl flex-col-reverse items-center px-6 py-20 lg:flex-row">
 
         {/* Left */}

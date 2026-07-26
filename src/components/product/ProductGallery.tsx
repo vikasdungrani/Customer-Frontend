@@ -28,7 +28,7 @@ export default function ProductGallery({
       <div
         className="
           flex
-          h-[520px]
+          h-130
           items-center
           justify-center
           rounded-2xl
@@ -43,7 +43,7 @@ export default function ProductGallery({
           alt="Product"
           width={600}
           height={600}
-          className="max-h-[450px] w-auto object-contain"
+          className="max-h-112.5 w-auto object-contain"
         />
       </div>
 

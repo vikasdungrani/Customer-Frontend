@@ -49,7 +49,7 @@ export default function ProductGrid() {
             <button
               className="
                 mt-3 w-full py-2 rounded-md text-white font-medium
-                bg-gradient-to-r from-green-400 to-blue-500
+                bg-linear-to-r from-green-400 to-blue-500
                 hover:from-green-500 hover:to-blue-600
                 transition
               "

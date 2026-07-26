@@ -55,7 +55,7 @@ export default function ProductCard({ product }: Props) {
             width={260}
             height={260}
             className="
-              max-h-[170px]
+              max-h-42.5
               w-auto
               object-contain
               transition-transform
