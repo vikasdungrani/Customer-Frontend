@@ -41,7 +41,7 @@ export default function ProductCard({ product }: Props) {
           className="
             relative
             flex
-            h-[220px]
+            h-55
             items-center
             justify-center
             overflow-hidden
