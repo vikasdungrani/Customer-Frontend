@@ -1,171 +1,201 @@
 "use client";
 
+import { useState } from "react";
+import { ChevronRight, ChevronDown } from "lucide-react";
+
 const categories = [
-  "All Products",
-  "Trending Products",
-  "Car Accessories",
-  "Safety Products",
-  "Home & Kitchen",
-  "Massage Products",
-  "Beauty Products",
-  "Clock",
-  "Humidifier",
-  "Packing Material",
-  "Baby Products",
-  "Fashion Products",
-  "Bags",
-  "Bathroom Accessories",
-  "Hardware Products",
-  "Mask",
-  "Garden & Outdoor",
-  "Umbrella",
-  "Exercise Products",
-  "Mobile Accessories",
-  "Kids Toys",
-  "Home Decor",
-  "Stainless Steel Products",
-  "Picnic",
-  "Electric Products",
-  "Office & Stationery",
-  "Winter Products",
-  "Craft Products",
-  "Cleaning Products",
-  "Bottle Products",
-  "Furniture",
-  "Summer Products",
-  "Computer Products",
-  "Bag Cover",
-  "Kids Stationery",
-  "Wipes Products",
-  "Pet Products",
-  "Soft Toys",
-  "Glass Products",
-  "Holi Products",
-  "Night Lamp",
-  "Wallpaper",
-  "Travel Products",
-  "Hair Brushes",
-  "Rain Season Products",
-  "Skin Care",
-];
-
-const brands = [
-  "Apple",
-  "Asus",
-  "Gionee",
-  "Micromax",
-  "Samsung",
-];
-
-const colors = [
-  "Black",
-  "Black Leather",
-  "Black with Red",
-  "Gold",
-  "Space Grey",
+  {
+    name: "All Products",
+    children: [],
+  },
+  {
+    name: "Trending Products",
+    children: [],
+  },
+  {
+    name: "Home & Living",
+    children: [
+      "Home & Kitchen",
+      "Home Decor",
+      "Furniture",
+      "Bathroom Accessories",
+      "Wallpaper",
+      "Lighting & Torches",
+    ],
+  },
+  {
+    name: "Kitchen & Dining",
+    children: [
+      "Glass & Tableware",
+      "Stainless Steel Products",
+      "Bottles & Drinkware",
+      "Picnic Products",
+    ],
+  },
+  {
+    name: "Electronics",
+    children: [
+      "Electronics",
+      "Mobile Accessories",
+      "Computer Accessories",
+      "Electrical Accessories",
+      "Humidifiers",
+      "Clocks",
+      "Night Lamps",
+      "Weight Scales",
+    ],
+  },
+  {
+    name: "Automotive",
+    children: [
+      "Car Accessories",
+      "Bike Accessories",
+      "Safety Products",
+    ],
+  },
+  {
+    name: "Fashion",
+    children: [
+      "Fashion",
+      "Bags & Luggage",
+      "Bag Covers",
+      "Umbrellas",
+      "Hair Brushes",
+      "Masks",
+    ],
+  },
+  {
+    name: "Beauty & Personal Care",
+    children: [
+      "Beauty",
+      "Cosmetics",
+      "Skin Care",
+      "Health & Wellness",
+      "Massage Products",
+      "Wipes",
+    ],
+  },
+  {
+    name: "Baby & Kids",
+    children: [
+      "Baby Products",
+      "Toys & Games",
+      "Soft Toys",
+      "Kids Stationery",
+    ],
+  },
+  {
+    name: "Sports & Outdoors",
+    children: [
+      "Sports, Fitness & Exercise",
+      "Garden & Outdoor",
+      "Travel Accessories",
+    ],
+  },
+  {
+    name: "Office & School",
+    children: [
+      "Office & Stationery",
+      "Craft Supplies",
+    ],
+  },
+  {
+    name: "Cleaning & Storage",
+    children: [
+      "Cleaning Products",
+      "All Purpose Cleaners",
+      "Packing Material",
+      "Hardware Products",
+    ],
+  },
+  {
+    name: "Seasonal",
+    children: [
+      "Summer Essentials",
+      "Monsoon & Rain Gear",
+      "Winter Essentials",
+      "Holi",
+    ],
+  },
+  {
+    name: "Pet Supplies",
+    children: [],
+  },
 ];
 
 export default function ShopSidebar() {
+  const [open, setOpen] = useState<string | null>(null);
+
+  const toggleCategory = (name: string) => {
+    setOpen((prev) => (prev === name ? null : name));
+  };
+
   return (
     <aside className="space-y-8">
-
       {/* Categories */}
 
-      <div className="rounded-lg border border-gray-200 bg-white p-4">
-
-        <h3 className="mb-6 text-xl font-semibold">
+      <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+        <h3 className="mb-5 text-xl font-semibold">
           Browse Categories
         </h3>
 
-        <ul className="space-y-4">
+        <ul className="space-y-1">
+          {categories.map((category) => {
+            const expanded = open === category.name;
 
-          {categories.map((item) => (
-            <li key={item}>
-              <button
-                className="w-full text-left text-gray-600 transition hover:text-[#22668B]"
-              >
-                {item}
-              </button>
-            </li>
-          ))}
+            return (
+              <li key={category.name}>
+                <button
+                  onClick={() =>
+                    category.children.length && toggleCategory(category.name)
+                  }
+                  className={`flex w-full items-center gap-2 rounded-lg px-2 py-3 transition-all duration-200
+                  ${
+                    expanded
+                      ? "bg-gray-50 text-[#22668B]"
+                      : "text-gray-700 hover:bg-gray-50 hover:text-[#22668B]"
+                  }`}
+                >
+                  {category.children.length > 0 ? (
+                    expanded ? (
+                      <ChevronDown size={16} className="flex-shrink-0" />
+                    ) : (
+                      <ChevronRight size={16} className="flex-shrink-0" />
+                    )
+                  ) : (
+                    <span className="w-4" />
+                  )}
 
+                  <span>{category.name}</span>
+                </button>
+
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    expanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  {category.children.length > 0 && (
+                    <ul className="ml-4 border-l border-gray-200 pl-5">
+                      {category.children.map((child) => (
+                        <li key={child}>
+                          <button className="block w-full rounded-md py-2 text-left text-sm text-gray-500 transition-all duration-200 hover:translate-x-1 hover:text-[#22668B]">
+                            {child}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </li>
+            );
+          })}
         </ul>
-
-      </div>
-
-      {/* Brands */}
-
-      {/* <div className="rounded-lg border border-gray-200 bg-white p-6">
-
-        <h3 className="mb-6 text-xl font-semibold">
-          Product Brand
-        </h3>
-
-        <ul className="space-y-4">
-
-          {brands.map((item) => (
-            <li key={item}>
-
-              <label className="flex cursor-pointer items-center gap-3">
-
-                <input
-                  type="radio"
-                  name="brand"
-                  className="h-4 w-4 accent-[#22668B]"
-                />
-
-                <span className="text-gray-600">
-                  {item}
-                </span>
-
-              </label>
-
-            </li>
-          ))}
-
-        </ul>
-
-      </div> */}
-
-      {/* Colors */}
-
-      <div className="rounded-lg border border-gray-200 bg-white p-6">
-
-        <h3 className="mb-6 text-xl font-semibold">
-          Color Filter
-        </h3>
-
-        <ul className="space-y-4">
-
-          {colors.map((item) => (
-            <li key={item}>
-
-              <label className="flex cursor-pointer items-center gap-3">
-
-                <input
-                  type="radio"
-                  name="color"
-                  className="h-4 w-4 accent-[#22668B]"
-                />
-
-                <span className="text-gray-600">
-                  {item}
-                </span>
-
-              </label>
-
-            </li>
-          ))}
-
-        </ul>
-
       </div>
 
       {/* Price */}
 
-      <div className="rounded-lg border border-gray-200 bg-white p-6">
-
-        <h3 className="mb-6 text-xl font-semibold">
+      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <h3 className="mb-5 text-xl font-semibold">
           Price Filter
         </h3>
 
@@ -179,9 +209,7 @@ export default function ShopSidebar() {
         <div className="mt-4 text-sm text-gray-500">
           Price : ₹0 — ₹1000
         </div>
-
       </div>
-
     </aside>
   );
 }
