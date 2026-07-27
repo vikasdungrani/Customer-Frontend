@@ -386,7 +386,7 @@ export default function Navbar() {
 
           <Link
             href="/"
-            className="block border-b px-6 py-4 text-sm"
+            className="block border-b px-4 py-2.5 text-[15px] font-medium"
           >
             Home
           </Link>
@@ -395,14 +395,14 @@ export default function Navbar() {
 
           <Link
             href="/blog"
-            className="block border-b px-6 py-4 text-sm"
+            className="block border-b px-4 py-2.5 text-[15px] font-medium"
           >
             Blog
           </Link>
 
           <Link
             href="/contact"
-            className="block px-6 py-4 text-sm"
+            className="block px-4 py-2.5 text-[15px] font-medium"
           >
             Contact
           </Link>
