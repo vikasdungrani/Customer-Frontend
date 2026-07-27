@@ -233,6 +233,7 @@ import { useState } from "react";
 
 import CategoryMegaMenu from "./CategoryMegaMenu";
 import Container from "./Container";
+import MobileCategoryMenu from "./MobileCategoryMenu";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -360,6 +361,8 @@ export default function Navbar() {
           >
             All Categories
           </Link>
+
+          <CategoryMegaMenu />
 
           <Link
             href="/blog"
