@@ -345,7 +345,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
 
-      {mobileOpen && (
+      {/* {mobileOpen && (
         <div className="border-t bg-white lg:hidden">
 
           <Link
@@ -363,6 +363,35 @@ export default function Navbar() {
           </Link>
 
           <CategoryMegaMenu />
+
+          <Link
+            href="/blog"
+            className="block border-b px-6 py-4 text-sm"
+          >
+            Blog
+          </Link>
+
+          <Link
+            href="/contact"
+            className="block px-6 py-4 text-sm"
+          >
+            Contact
+          </Link>
+
+        </div>
+      )} */}
+
+      {mobileOpen && (
+        <div className="border-t bg-white lg:hidden">
+
+          <Link
+            href="/"
+            className="block border-b px-6 py-4 text-sm"
+          >
+            Home
+          </Link>
+
+          <MobileCategoryMenu />
 
           <Link
             href="/blog"
