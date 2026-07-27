@@ -24,6 +24,10 @@ export default function ShopPage() {
 
           <div className="grid grid-cols-12 gap-6">
 
+            <div className="block lg:hidden mb-6">
+              <ShopSidebar />
+            </div>
+
             <div className="hidden lg:block lg:col-span-3">
               <ShopSidebar />
             </div>
