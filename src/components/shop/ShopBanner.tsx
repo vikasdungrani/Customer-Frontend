@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Container from "../layout/Container";
 
 type ShopBannerProps = {
   title: string;
@@ -11,7 +12,7 @@ export default function ShopBanner({
 }: ShopBannerProps) {
   return (
     <section className="border-t border-gray-100 bg-[#f6f6f6]">
-      <div className="mx-auto max-w-7xl px-6">
+      <Container>
 
         <div className="flex flex-col items-start justify-between gap-6 py-16 md:flex-row md:items-center">
 
@@ -54,7 +55,7 @@ export default function ShopBanner({
 
         </div>
 
-      </div>
+      </Container>
     </section>
   );
 }
