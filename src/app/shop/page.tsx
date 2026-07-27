@@ -1,6 +1,7 @@
 import Breadcrumb from "@/components/common/Breadcrumb";
 import ShopSidebar from "@/components/shop/ShopSidebar";
 import ShopClient from "@/components/shop/ShopClient";
+import Container from "@/components/layout/Container";
 
 export default function ShopPage() {
   return (
@@ -18,7 +19,8 @@ export default function ShopPage() {
       />
 
       <section className="pt-2 pb-8">
-        <div className="mx-auto max-w-7xl px-6">
+        {/* <div className="mx-auto max-w-7xl px-6"> */}
+        <Container>
 
           <div className="grid grid-cols-12 gap-6">
 
@@ -32,7 +34,7 @@ export default function ShopPage() {
 
           </div>
 
-        </div>
+        </Container>
       </section>
     </>
   );
