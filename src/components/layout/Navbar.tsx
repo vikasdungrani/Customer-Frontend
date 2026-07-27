@@ -222,7 +222,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-
 import {
   Search,
   Heart,
@@ -230,10 +229,10 @@ import {
   User,
   Menu,
 } from "lucide-react";
-
 import { useState } from "react";
 
 import CategoryMegaMenu from "./CategoryMegaMenu";
+import Container from "./Container";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -241,148 +240,111 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b bg-white shadow-sm">
 
-      <div className="mx-auto flex h-14 max-w-425 items-center justify-between px-6">
+      <Container>
 
-        {/* Logo */}
+        <div className="flex h-14 items-center justify-between">
 
-        <Link href="/" className="flex items-center">
+          {/* Logo */}
 
-          <Image
-            src="/images/logo.png"
-            alt="Univershopper"
-            width={800}
-            height={150}
-            className="h-12 w-auto"
-            priority
-          />
+          <Link href="/" className="flex items-center">
 
-        </Link>
+            <Image
+              src="/images/logo.png"
+              alt="Univershopper"
+              width={800}
+              height={150}
+              className="h-12 w-auto"
+              priority
+            />
 
-        {/* Desktop Menu */}
-
-        <nav className="hidden items-center gap-6 lg:flex">
-
-          <Link
-            href="/"
-            className="text-sm font-medium text-gray-700 transition hover:text-[#22668B]"
-          >
-            Home
           </Link>
 
-          <Link
-            href="/shop"
-            className="text-sm font-medium text-gray-700 transition hover:text-[#22668B]"
-          >
-            All Category
-          </Link>
+          {/* Desktop Menu */}
 
-          <CategoryMegaMenu />
+          <nav className="hidden items-center gap-6 lg:flex">
 
-          <Link
-            href="/blog"
-            className="text-sm font-medium text-gray-700 transition hover:text-[#22668B]"
-          >
-            Blog
-          </Link>
-
-          <Link
-            href="/contact"
-            className="text-sm font-medium text-gray-700 transition hover:text-[#22668B]"
-          >
-            Contact
-          </Link>
-
-        </nav>
-
-        {/* Right Icons */}
-
-        <div className="hidden items-center gap-4 lg:flex">
-
-          <button className="transition hover:text-[#22668B]">
-            <Search size={18} />
-          </button>
-
-          <button className="relative transition hover:text-[#22668B]">
-
-            <Heart size={18} />
-
-            <span
-              className="
-                absolute
-                -right-2
-                -top-2
-
-                flex
-                h-4
-                w-4
-
-                items-center
-                justify-center
-
-                rounded-full
-
-                bg-[#22668B]
-
-                text-[10px]
-                text-white
-              "
+            <Link
+              href="/"
+              className="text-sm font-medium text-gray-700 transition hover:text-[#22668B]"
             >
-              0
-            </span>
+              Home
+            </Link>
 
-          </button>
-
-          <button className="relative transition hover:text-[#22668B]">
-
-            <ShoppingCart size={18} />
-
-            <span
-              className="
-                absolute
-                -right-2
-                -top-2
-
-                flex
-                h-4
-                w-4
-
-                items-center
-                justify-center
-
-                rounded-full
-
-                bg-[#22668B]
-
-                text-[10px]
-                text-white
-              "
+            <Link
+              href="/shop"
+              className="text-sm font-medium text-gray-700 transition hover:text-[#22668B]"
             >
-              0
-            </span>
+              All Categories
+            </Link>
 
-          </button>
+            <CategoryMegaMenu />
 
-          <button className="transition hover:text-[#22668B]">
-            <User size={18} />
+            <Link
+              href="/blog"
+              className="text-sm font-medium text-gray-700 transition hover:text-[#22668B]"
+            >
+              Blog
+            </Link>
+
+            <Link
+              href="/contact"
+              className="text-sm font-medium text-gray-700 transition hover:text-[#22668B]"
+            >
+              Contact
+            </Link>
+
+          </nav>
+
+          {/* Right Icons */}
+
+          <div className="hidden items-center gap-4 lg:flex">
+
+            <button className="transition hover:text-[#22668B]">
+              <Search size={18} />
+            </button>
+
+            <button className="relative transition hover:text-[#22668B]">
+
+              <Heart size={18} />
+
+              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-[#22668B] text-[10px] text-white">
+                0
+              </span>
+
+            </button>
+
+            <button className="relative transition hover:text-[#22668B]">
+
+              <ShoppingCart size={18} />
+
+              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-[#22668B] text-[10px] text-white">
+                0
+              </span>
+
+            </button>
+
+            <button className="transition hover:text-[#22668B]">
+              <User size={18} />
+            </button>
+
+          </div>
+
+          {/* Mobile Button */}
+
+          <button
+            className="lg:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            <Menu size={28} />
           </button>
 
         </div>
 
-        {/* Mobile */}
-
-        <button
-          className="lg:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          <Menu size={28} />
-        </button>
-
-      </div>
+      </Container>
 
       {/* Mobile Menu */}
 
       {mobileOpen && (
-
         <div className="border-t bg-white lg:hidden">
 
           <Link
@@ -396,7 +358,7 @@ export default function Navbar() {
             href="/shop"
             className="block border-b px-6 py-4 text-sm"
           >
-            Shop
+            All Categories
           </Link>
 
           <Link
@@ -414,7 +376,6 @@ export default function Navbar() {
           </Link>
 
         </div>
-
       )}
 
     </header>

@@ -1,6 +1,7 @@
 //src/app/components/common/Breadcrumb.tsx
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import Container from "@/components/layout/Container";
 
 export interface BreadcrumbItem {
   label: string;
@@ -18,32 +19,21 @@ export default function Breadcrumb({
 }: BreadcrumbProps) {
   return (
     <section className="border-b border-gray-200 bg-gray-50">
-      <div
-        className={`mx-auto max-w-7xl px-6 ${title ? "py-6" : "py-1"
-          }`}
-      >
-        <div className="flex flex-col gap-2">
-
-          {/* Page Title */}
-
+      <Container>
+        <div className={title ? "py-6" : "py-2"}>
           {title && (
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="mb-2 text-3xl font-bold text-gray-900">
               {title}
             </h1>
           )}
 
-          {/* Breadcrumb */}
-
           <nav className="flex flex-wrap items-center text-sm text-gray-500">
             {items.map((item, index) => (
-              <div
-                key={index}
-                className="flex items-center"
-              >
+              <div key={index} className="flex items-center">
                 {item.href ? (
                   <Link
                     href={item.href}
-                    className="transition hover:text-[#22668B]"
+                    className="hover:text-[#22668B]"
                   >
                     {item.label}
                   </Link>
@@ -62,9 +52,8 @@ export default function Breadcrumb({
               </div>
             ))}
           </nav>
-
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
