@@ -2,14 +2,14 @@
 import api from "@/libs/axios";
 import { Product } from "@/types/product";
 
-export interface ProductResponse {
+export interface ProductListResponse {
   count: number;
   next: string | null;
   previous: string | null;
   results: Product[];
 }
 
-interface ListParams {
+export interface ProductQueryParams {
   page?: number;
   page_size?: number;
   search?: string;
@@ -22,10 +22,10 @@ interface ListParams {
 =========================== */
 
 export async function getProducts(
-  params: ListParams = {}
+  params: ProductQueryParams = {}
 ) {
   const { data } =
-    await api.get<ProductResponse>(
+    await api.get<ProductListResponse>(
       "/api/customer/products/",
       {
         params: {

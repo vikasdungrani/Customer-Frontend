@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import {
   getProducts,
-  ProductListResponse,
-  ProductQueryParams,
+  ProductResponse,
+  ListParams,
 } from "@/services/product.service";
 
-export function useProducts(params?: ProductQueryParams) {
-  const [data, setData] = useState<ProductListResponse | null>(null);
+export function useProducts(params?: ListParams) {
+  const [data, setData] = useState<ProductResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<unknown>(null);
 
