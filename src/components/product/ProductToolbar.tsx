@@ -37,7 +37,7 @@ export default function ProductToolbar({
   );
 
   return (
-    <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+    <div className="flex flex-col gap-4 pb-4 lg:flex-row lg:items-center lg:justify-between">
 
       {/* Left */}
 
@@ -47,7 +47,7 @@ export default function ProductToolbar({
 
           <Search
             size={18}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+            className="h-8 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
           />
 
           <input
@@ -55,7 +55,7 @@ export default function ProductToolbar({
             value={search}
             onChange={(e) => onSearchChange?.(e.target.value)}
             placeholder="Search products..."
-            className="h-11 w-full rounded-lg border border-gray-300 pl-11 pr-4 text-sm outline-none focus:border-[#22668B]"
+            className="h-8 w-full rounded-lg border border-gray-300 pl-11 pr-4 text-sm outline-none focus:border-[#22668B]"
           />
 
         </div>
@@ -65,7 +65,7 @@ export default function ProductToolbar({
           onChange={(e) =>
             onSortChange?.(e.target.value)
           }
-          className="h-11 rounded-lg border border-gray-300 bg-white px-4 text-sm outline-none transition focus:border-[#22668B]"
+          className="h-6 rounded-lg border border-gray-300 bg-white px-4 text-sm outline-none transition focus:border-[#22668B]"
         >
           <option value="default">
             Default Sorting
@@ -95,7 +95,7 @@ export default function ProductToolbar({
               Number(e.target.value)
             )
           }
-          className="h-11 rounded-lg border border-gray-300 bg-white px-4 text-sm outline-none transition focus:border-[#22668B]"
+          className="h-6 rounded-lg border border-gray-300 bg-white px-4 text-sm outline-none transition focus:border-[#22668B]"
         >
           <option value={12}>Show 12</option>
           <option value={24}>Show 24</option>
@@ -126,7 +126,7 @@ export default function ProductToolbar({
           <button
             className="
                 flex
-                h-11
+                h-8
                 w-11
                 items-center
                 justify-center
@@ -140,7 +140,7 @@ export default function ProductToolbar({
           <button
             className="
                 flex
-                h-11
+                h-8
                 w-11
                 items-center
                 justify-center
