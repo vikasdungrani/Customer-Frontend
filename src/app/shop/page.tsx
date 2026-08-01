@@ -25,7 +25,7 @@ export default function ShopPage() {
 
           <div className="grid grid-cols-12 gap-6">
 
-            <div className="col-span-12 lg:col-span-9">
+            <div className="col-span-12 lg:col-span-12">
               <ShopClient />
             </div>
 
