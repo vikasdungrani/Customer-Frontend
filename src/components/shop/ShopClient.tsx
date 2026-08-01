@@ -1,4 +1,5 @@
 //components/shop/ShopClient.tsx
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -6,6 +7,7 @@ import { useEffect, useState } from "react";
 import ProductGrid from "@/components/product/ProductGrid";
 import ProductToolbar from "@/components/product/ProductToolbar";
 import Pagination from "@/components/shop/Pagination";
+import ShopSidebar from "@/components/shop/ShopSidebar";
 
 import { getProducts } from "@/services/product.service";
 import useDebounce from "@/hooks/useDebounce";
@@ -29,9 +31,20 @@ export default function ShopClient() {
 
   const debouncedSearch = useDebounce(search, 400);
 
+  const [categoryId, setCategoryId] = useState<number | null>(null);
+
+  const [subCategoryId, setSubCategoryId] = useState<number | null>(null);
+
   useEffect(() => {
     loadProducts();
-  }, [page, pageSize, debouncedSearch]);
+  }, [
+    page,
+    pageSize,
+    debouncedSearch,
+    sortBy,
+    categoryId,
+    subCategoryId,
+  ]);
 
   async function loadProducts() {
     try {
@@ -41,30 +54,10 @@ export default function ShopClient() {
         page,
         page_size: pageSize,
         search: debouncedSearch,
+        sort: sortBy,
+        category_id: categoryId,
+        subcategory_id: subCategoryId,
       });
-
-      // Debug: Products without image
-      const noImageProducts = data.results.filter(
-        (product) =>
-          !product.photo_link_1 ||
-          product.photo_link_1.trim() === ""
-      );
-
-      if (noImageProducts.length > 0) {
-        console.group(
-          `❌ Products without image (${noImageProducts.length})`
-        );
-
-        console.table(
-          noImageProducts.map((product) => ({
-            ID: product.sub_product_id,
-            Name: product.product_name,
-            Photo: product.photo_link_1,
-          }))
-        );
-
-        console.groupEnd();
-      }
 
       setProducts(data.results);
       setCount(data.count);
@@ -77,32 +70,68 @@ export default function ShopClient() {
   }
 
   return (
-    <>
-      <ProductToolbar
-        totalProducts={count}
-        page={page}
-        pageSize={pageSize}
-        sortBy={sortBy}
-        search={search}
-        onSearchChange={setSearch}
-        onPageSizeChange={setPageSize}
-        onSortChange={setSortBy}
-      />
+    <div className="grid grid-cols-12 gap-6">
 
-      {loading ? (
-        <div className="py-20 text-center">
-          Loading...
-        </div>
-      ) : (
-        <ProductGrid products={products} />
-      )}
+      {/* Sidebar */}
 
-      <Pagination
-        page={page}
-        total={count}
-        pageSize={pageSize}
-        onPageChange={setPage}
-      />
-    </>
+      <div className="hidden lg:block lg:col-span-3">
+
+        <ShopSidebar
+          selectedCategory={categoryId}
+          selectedSubCategory={subCategoryId}
+          onCategorySelect={(id) => {
+            setPage(1);
+            setCategoryId(id);
+          }}
+          onSubCategorySelect={(id) => {
+            setPage(1);
+            setSubCategoryId(id);
+          }}
+        />
+
+      </div>
+
+      {/* Products */}
+
+      <div className="col-span-12 lg:col-span-9">
+
+        <ProductToolbar
+          totalProducts={count}
+          page={page}
+          pageSize={pageSize}
+          sortBy={sortBy}
+          search={search}
+          onSearchChange={(value) => {
+            setPage(1);
+            setSearch(value);
+          }}
+          onPageSizeChange={(value) => {
+            setPage(1);
+            setPageSize(value);
+          }}
+          onSortChange={(value) => {
+            setPage(1);
+            setSortBy(value);
+          }}
+        />
+
+        {loading ? (
+          <div className="py-20 text-center">
+            Loading...
+          </div>
+        ) : (
+          <ProductGrid products={products} />
+        )}
+
+        <Pagination
+          page={page}
+          total={count}
+          pageSize={pageSize}
+          onPageChange={setPage}
+        />
+
+      </div>
+
+    </div>
   );
 }
