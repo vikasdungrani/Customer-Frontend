@@ -1,5 +1,6 @@
+//src/app/shop/page.tsx
+
 import Breadcrumb from "@/components/common/Breadcrumb";
-import ShopSidebar from "@/components/shop/ShopSidebar";
 import ShopClient from "@/components/shop/ShopClient";
 import Container from "@/components/layout/Container";
 
@@ -23,10 +24,6 @@ export default function ShopPage() {
         <Container>
 
           <div className="grid grid-cols-12 gap-6">
-
-            <div className="hidden lg:block lg:col-span-3">
-              <ShopSidebar />
-            </div>
 
             <div className="col-span-12 lg:col-span-9">
               <ShopClient />
