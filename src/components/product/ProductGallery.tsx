@@ -21,43 +21,21 @@ export default function ProductGallery({
     validImages[0] || fallback
   );
 
-  const handleDownload = async () => {
+  const handleDownload = () => {
     if (!selectedImage || selectedImage === fallback) return;
 
-    try {
-      const response = await fetch(selectedImage);
+    const downloadUrl = `/api/download-image?url=${encodeURIComponent(
+      selectedImage
+    )}`;
 
-      if (!response.ok) {
-        throw new Error("Failed to download image");
-      }
+    const link = document.createElement("a");
 
-      const blob = await response.blob();
+    link.href = downloadUrl;
+    link.download = "product-image.jpg";
 
-      const blobUrl = window.URL.createObjectURL(blob);
-
-      const link = document.createElement("a");
-      link.href = blobUrl;
-      link.download = "product-image.jpg";
-
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      window.URL.revokeObjectURL(blobUrl);
-    } catch (error) {
-      console.error("Image download failed:", error);
-
-      // Fallback for images that don't allow fetch/CORS
-      const link = document.createElement("a");
-      link.href = selectedImage;
-      link.download = "product-image.jpg";
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -146,10 +124,9 @@ export default function ProductGallery({
                 p-2
                 transition
 
-                ${
-                  selectedImage === image
-                    ? "border-[#22668B]"
-                    : "border-gray-200"
+                ${selectedImage === image
+                  ? "border-[#22668B]"
+                  : "border-gray-200"
                 }
               `}
             >
