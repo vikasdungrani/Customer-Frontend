@@ -1,3 +1,5 @@
+// components/product/ProductCard.tsx
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,11 +15,14 @@ export default function ProductCard({ product }: Props) {
     product.photo_url ||
     "/images/auth-logo.jpg";
 
-  const slug = product.sub_product_id || product.id.toString();
+  const slug =
+    product.sub_product_id || product.id.toString();
 
-  const inStock = true;
+  const mainCategories =
+    product.main_category?.map((category) => category.name).join(", ") || "";
 
-  console.log(product);
+  const subCategories =
+    product.sub_category?.map((category) => category.name).join(", ") || "";
 
   return (
     <div
@@ -69,6 +74,9 @@ export default function ProductCard({ product }: Props) {
       {/* Product Details */}
 
       <div className="border-t border-gray-100 px-4 py-4">
+
+        {/* Product Name */}
+
         <Link
           href={`/product/${slug}`}
           className="
@@ -86,37 +94,43 @@ export default function ProductCard({ product }: Props) {
           {product.product_name}
         </Link>
 
-        {product.main_categories && (
-          <p className="mt-1 text-xs text-gray-500 truncate">
-            {product.main_categories}
+        {/* Categories */}
+
+        {(mainCategories || subCategories) && (
+          <p className="mt-1 truncate text-xs text-gray-500">
+            {mainCategories}
+
+            {mainCategories && subCategories && " / "}
+
+            {subCategories}
           </p>
         )}
 
+        {/* Price + Stock */}
+
         <div className="mt-3 flex items-center justify-between">
+
           <p className="text-xl font-bold text-[#22668B]">
             ₹{product.telegram_price}
           </p>
+
           {product.stock_status === "IN_STOCK" ? (
+
             <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
               In Stock
             </span>
+
           ) : (
+
             <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700">
               Out of Stock
             </span>
+
           )}
+
         </div>
+
       </div>
     </div>
   );
 }
-
-          {/* <span
-            className={`rounded-full px-3 py-1 text-[11px] font-semibold ${
-              inStock
-                ? "bg-green-100 text-green-700"
-                : "bg-red-100 text-red-700"
-            }`}
-          >
-            {inStock ? "In Stock" : "Out of Stock"}
-          </span> */}

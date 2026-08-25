@@ -19,6 +19,7 @@ instance.interceptors.request.use(
     const token = getCookie("access_token");
     console.log("🔐 Sending request to:", config.url);
     console.log("🔐 Token found:", token ? "YES" : "NO");
+    console.log(access);
 
     if (access) {
       config.headers.Authorization = `Bearer ${access}`; // correct place
