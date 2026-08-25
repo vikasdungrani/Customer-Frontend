@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Download } from "lucide-react";
 
 interface Props {
   images: (string | null | undefined)[];
@@ -20,6 +21,45 @@ export default function ProductGallery({
     validImages[0] || fallback
   );
 
+  const handleDownload = async () => {
+    if (!selectedImage || selectedImage === fallback) return;
+
+    try {
+      const response = await fetch(selectedImage);
+
+      if (!response.ok) {
+        throw new Error("Failed to download image");
+      }
+
+      const blob = await response.blob();
+
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = "product-image.jpg";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error("Image download failed:", error);
+
+      // Fallback for images that don't allow fetch/CORS
+      const link = document.createElement("a");
+      link.href = selectedImage;
+      link.download = "product-image.jpg";
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-5">
 
@@ -27,6 +67,7 @@ export default function ProductGallery({
 
       <div
         className="
+          relative
           flex
           h-130
           items-center
@@ -38,6 +79,40 @@ export default function ProductGallery({
           p-8
         "
       >
+
+        {/* Download Button */}
+
+        {selectedImage !== fallback && (
+          <button
+            type="button"
+            onClick={handleDownload}
+            title="Download image"
+            className="
+              absolute
+              right-4
+              top-4
+              z-10
+              flex
+              h-10
+              w-10
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-gray-200
+              bg-white
+              text-gray-700
+              shadow-sm
+              transition
+              hover:bg-[#22668B]
+              hover:text-white
+              hover:shadow-md
+            "
+          >
+            <Download size={18} />
+          </button>
+        )}
+
         <Image
           src={selectedImage}
           alt="Product"
@@ -45,6 +120,7 @@ export default function ProductGallery({
           height={600}
           className="max-h-112.5 w-auto object-contain"
         />
+
       </div>
 
       {/* Thumbnails */}
@@ -55,11 +131,13 @@ export default function ProductGallery({
           {validImages.map((image, index) => (
             <button
               key={index}
+              type="button"
               onClick={() => setSelectedImage(image)}
               className={`
                 flex
                 h-24
                 w-24
+                shrink-0
                 items-center
                 justify-center
                 rounded-lg
